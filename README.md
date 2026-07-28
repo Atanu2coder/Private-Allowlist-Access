@@ -66,20 +66,6 @@ A privacy-preserving zero-knowledge allowlist access platform built on the Midni
 
 > **Note to Reviewers**: Preprod deployment is fully supported in the codebase. If the Lace / 1AM Wallet is stuck on "Wallet is syncing", the dApp falls back to an interactive **Demo Mode** that demonstrates the full allowlist verification lifecycle — commitment publication, ZK proof generation, verification, and aggregate state update — without requiring a live blockchain connection.
 
-```text
-=====================================================
-Midnight Contract Deployment: Private Allowlist Access
-=====================================================
-Target Network: preprod
-Proof Server:   http://localhost:6300
-Indexer URL:    https://indexer.preprod.midnight.network
------------------------------------------------------
-Deploying contracts/private-allowlist.compact circuit...
-
-[SUCCESS] Contract deployed successfully!
-Contract Address: 0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c
-```
-
 ---
 
 ## 🔑 Browser Wallet Connector (`window.midnight.mnLace`)
@@ -188,13 +174,13 @@ Traditional digital gating forces a painful trade-off:
 - **Public ledgers** expose every member identity and wallet address — destroying user privacy
 - **Private databases** require blind trust in a central server — destroying verifiability
 
-This dApp eliminates the trade-off entirely. Using **Zero-Knowledge proofs on the Midnight blockchain**, members verify their eligibility through a ZK circuit that mathematically proves membership *without revealing the identity or position itself*. The final aggregate count is completely verifiable by anyone. The individual identities remain permanently private.
+This dApp eliminates the trade-off entirely. Using **Zero-Knowledge proofs on the Midnight blockchain**, members verify their eligibility through a ZK circuit that mathematically proves membership *without revealing the identity or position itself*. The final aggregate count is completely verifiable by anyone. The individual choices remain permanently private.
 
 ### Use cases:
 - **Event Check-In**: Prove you are invited without revealing who you are.
 - **Exclusive Content Access**: Unlock subscriber resources without publishing member lists.
 - **DAO Member Verification**: Verify voting rights without linking wallets to real-world identities.
-- **Any scenario requiring privacy-preserving access verification**
+- **Any scenario requiring privacy-preserving democratic consensus**
 
 ---
 
@@ -207,7 +193,21 @@ The hero landing page with wallet connect, commitment publication, or ZK verific
 Real-time ZK proof activity console, wallet status tracking, and aggregate verified count updates.
 
 ### Multi-Page Dashboard & Explorer State
-Public ledger state tracking, commitment verification cards, ZK-encrypted proof submission, and full activity history.
+Real-time verified count, commitment status metrics, ZK-encrypted proof submission, and full activity history.
+
+```text
+=====================================================
+Midnight Contract Deployment: Private Allowlist Access
+=====================================================
+Target Network: preprod
+Proof Server:   http://localhost:6300
+Indexer URL:    https://indexer.preprod.midnight.network
+-----------------------------------------------------
+Deploying contracts/private-allowlist.compact circuit...
+
+[SUCCESS] Contract deployed successfully!
+Contract Address: 0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c
+```
 
 ---
 
@@ -241,10 +241,13 @@ Private-Allowlist-Access/
 
 GitHub Actions workflow runs automatically on every push and pull request:
 
+```yaml
+# .github/workflows/ci.yml
 - Install dependencies (Node 22)
 - Compile Compact contract
 - Run ZK contract test suite
-- Build Vite production bundle (`.github/workflows/ci.yml`)
+- Build Vite production bundle
+```
 
 ---
 
@@ -252,4 +255,6 @@ GitHub Actions workflow runs automatically on every push and pull request:
 
 MIT License — see [LICENSE](LICENSE) for details.
 
-Built for the **Midnight Builder Challenge** — demonstrating that private, verifiable, and trustless access control is achievable today.
+---
+
+*Built for the Midnight Builder Challenge — demonstrating that private, verifiable, and trustless access control is achievable today.*
