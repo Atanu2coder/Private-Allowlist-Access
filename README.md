@@ -1,5 +1,9 @@
 # Private Allowlist Access
 
+[![Midnight Network](https://img.shields.io/badge/Midnight-Network-purple.svg)](https://midnight.network)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/Atanu2coder/Private-Allowlist-Access)
+
 A privacy-preserving allowlist-gated access dApp on the Midnight Network.
 
 ## Product Proposal
