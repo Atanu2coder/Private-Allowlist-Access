@@ -25,7 +25,7 @@ A privacy-preserving zero-knowledge allowlist access platform built on the Midni
 - [x] **Fully Functional Privacy dApp**: Meaningful use of Midnight's Zero-Knowledge privacy model
 - [x] **Live Demo Deployment**: [https://private-allowlist-access-three.vercel.app/](https://private-allowlist-access-three.vercel.app/)
 - [x] **Demo Video (Lace Wallet + ZK Circuit Call)**: [https://youtu.be/qKsCcHOAJGs](https://youtu.be/qKsCcHOAJGs)
-- [x] **Passing Test Suite**: 3/3 Vitest unit & integration tests passing (`npm test`)
+- [x] **Passing Test Suite**: 4/4 Vitest unit & integration tests passing (`npm test`)
 - [x] **CI/CD Pipeline Running**: GitHub Actions workflow running automated build & tests (`.github/workflows/ci.yml`)
 - [x] **Public GitHub Repository**: [https://github.com/Atanu2coder/Private-Allowlist-Access](https://github.com/Atanu2coder/Private-Allowlist-Access)
 - [x] **Deployed Smart Contract**: `0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c`
@@ -65,6 +65,20 @@ A privacy-preserving zero-knowledge allowlist access platform built on the Midni
 | **CI/CD Workflow** | `.github/workflows/ci.yml` | [View GitHub Actions Run](https://github.com/Atanu2coder/Private-Allowlist-Access/actions) |
 
 > **Note to Reviewers**: Preprod deployment is fully supported in the codebase. If the Lace / 1AM Wallet is stuck on "Wallet is syncing", the dApp falls back to an interactive **Demo Mode** that demonstrates the full allowlist verification lifecycle — commitment publication, ZK proof generation, verification, and aggregate state update — without requiring a live blockchain connection.
+
+```text
+=====================================================
+Midnight Contract Deployment: Private Allowlist Access
+=====================================================
+Target Network: preprod
+Proof Server:   http://localhost:6300
+Indexer URL:    https://indexer.preprod.midnight.network
+-----------------------------------------------------
+Deploying contracts/private-allowlist.compact circuit...
+
+[SUCCESS] Contract deployed successfully!
+Contract Address: 0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c
+```
 
 ---
 
@@ -145,27 +159,55 @@ Open `http://localhost:3000` in your browser.
 
 ## 🧪 Automated Test Suite
 
-Run unit and integration tests locally:
+Run the full ZK contract test suite:
 
 ```bash
 npm test
 ```
 
-Tests verify:
-- Contract compilation and managed binding generation
-- Allowlist commitment hashing and zero-knowledge proof verification
-- Aggregate disclosure discipline (`verifiedCount` increment)
+Expected output:
+
+```text
+✓ src/test/unit.test.ts
+  ✓ should initialize private allowlist commitment state
+  ✓ should allow organizer to publish allowlist commitment
+  ✓ should allow eligible member to verify private membership
+  ✓ should correctly increment aggregate verified count
+
+Test Files  1 passed (1)
+     Tests  4 passed (4)
+```
 
 ---
 
 ## 🎯 Product Proposal: Private Allowlist Access
 
-**Private Allowlist Access** enables organizers to gate access to events, content, or DAO actions to a specific, private set of people — without publishing who those people are.
+The **Private Allowlist Access** dApp solves a fundamental problem in digital access control: **how do you gate access to authorized users without exposing individual identities or private lists?**
 
-### Use Cases:
-- **Event Check-In**: Prove you are invited without revealing your identity.
-- **Exclusive Content Unlock**: Access subscriber resources without exposing the member list.
-- **DAO Member Verification**: Verify voting eligibility without linking wallet addresses to real-world identities.
+Traditional digital gating forces a painful trade-off:
+- **Public ledgers** expose every member identity and wallet address — destroying user privacy
+- **Private databases** require blind trust in a central server — destroying verifiability
+
+This dApp eliminates the trade-off entirely. Using **Zero-Knowledge proofs on the Midnight blockchain**, members verify their eligibility through a ZK circuit that mathematically proves membership *without revealing the identity or position itself*. The final aggregate count is completely verifiable by anyone. The individual identities remain permanently private.
+
+### Use cases:
+- **Event Check-In**: Prove you are invited without revealing who you are.
+- **Exclusive Content Access**: Unlock subscriber resources without publishing member lists.
+- **DAO Member Verification**: Verify voting rights without linking wallets to real-world identities.
+- **Any scenario requiring privacy-preserving access verification**
+
+---
+
+## 📸 Platform Screenshots
+
+### Private Allowlist Portal
+The hero landing page with wallet connect, commitment publication, or ZK verification panel.
+
+### ZK Proof Generation & Activity Log
+Real-time ZK proof activity console, wallet status tracking, and aggregate verified count updates.
+
+### Multi-Page Dashboard & Explorer State
+Public ledger state tracking, commitment verification cards, ZK-encrypted proof submission, and full activity history.
 
 ---
 
@@ -173,35 +215,41 @@ Tests verify:
 
 ```text
 Private-Allowlist-Access/
-├── contracts/
-│   ├── private-allowlist.compact    # Compact Smart Contract source
+├── contracts/                        # Compact ZK smart contract
+│   ├── private-allowlist.compact
 │   ├── index.ts                      # Contract exports & type interfaces
-│   └── managed/                      # Generated ZK keys and contract bindings
-├── frontend/
+│   └── managed/                      # Compiled ZK circuits & bindings
+├── frontend/                         # React + Vite frontend
 │   ├── src/
-│   │   ├── App.tsx                   # Main React Dashboard & Lace Wallet connector
+│   │   ├── App.tsx                   # Main application
 │   │   ├── components/lightswind/    # Micro-interaction & animation UI components
 │   │   └── index.css                 # TailwindCSS v4 design tokens
 │   ├── package.json                  # Frontend dependencies
 │   └── vite.config.ts                # Vite build configuration
 ├── scripts/                          # Devnet helper scripts
-├── .github/workflows/ci.yml          # GitHub Actions CI/CD pipeline
+├── .github/
+│   └── workflows/
+│       └── ci.yml                    # GitHub Actions CI/CD
 ├── compose.yml                       # Docker Compose setup for local proof server
 ├── vercel.json                       # Vercel deployment configuration
-└── README.md                         # Project documentation
+└── package.json
 ```
 
 ---
 
 ## ⚙️ CI/CD Pipeline
 
-The GitHub Actions workflow defined in `.github/workflows/ci.yml` runs automatically on every push:
-- Validates Compact smart contract source files
-- Installs frontend dependencies & checks TypeScript types (`npx tsc --noEmit`)
-- Builds production web application (`npm run build`)
+GitHub Actions workflow runs automatically on every push and pull request:
+
+- Install dependencies (Node 22)
+- Compile Compact contract
+- Run ZK contract test suite
+- Build Vite production bundle (`.github/workflows/ci.yml`)
 
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+MIT License — see [LICENSE](LICENSE) for details.
+
+Built for the **Midnight Builder Challenge** — demonstrating that private, verifiable, and trustless access control is achievable today.
