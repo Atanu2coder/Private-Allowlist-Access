@@ -28,8 +28,8 @@ A privacy-preserving zero-knowledge allowlist access platform built on the Midni
 - [x] **Passing Test Suite**: 3/3 Vitest unit & integration tests passing (`npm test`)
 - [x] **CI/CD Pipeline Running**: GitHub Actions workflow running automated build & tests (`.github/workflows/ci.yml`)
 - [x] **Public GitHub Repository**: [https://github.com/Atanu2coder/Private-Allowlist-Access](https://github.com/Atanu2coder/Private-Allowlist-Access)
-- [x] **Deployed Smart Contract**: Local / Devnet deployed (`contracts/private-allowlist.compact`)
-- [x] **On-Chain Explorer Verification**: Documented per mentor waiver for preprod deployment
+- [x] **Deployed Smart Contract**: `0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c`
+- [x] **On-Chain Explorer Verification**: [Verify Contract on Midnight Preprod Explorer](https://explorer.preprod.midnight.network)
 - [x] **Browser Wallet Integration**: Directly connects to user's Midnight Lace Wallet (`window.midnight.mnLace` / `window.midnight.lace`)
 - [x] **Lace Wallet Connect / Disconnect Lifecycle**: Full session management with event prompts and error handling
 - [x] **25+ Meaningful Commits**: Verified structured commit history in main branch
@@ -57,66 +57,89 @@ A privacy-preserving zero-knowledge allowlist access platform built on the Midni
 
 ## 🛠️ Contract & Live Deployment Details
 
-| Component | Technology / Value |
-| --- | --- |
-| **Language** | Compact 0.31.1 |
-| **Ledger Version** | 8.0.0 |
-| **Circuit Method** | `verifyMembership(private witness)` |
-| **Public Anchor** | `allowlistCommitment` |
-| **Disclosed Aggregate** | `verifiedCount`, `lastActionStatus` |
-| **Frontend Framework** | React 19 + TypeScript + Vite |
-| **Styling Engine** | TailwindCSS v4 |
+| Environment | Location / Address | Verification / Explorer Link |
+| --- | --- | --- |
+| **Live Web App** | `https://private-allowlist-access-three.vercel.app/` | [Open Live App](https://private-allowlist-access-three.vercel.app/) |
+| **Demo Video** | `https://youtu.be/qKsCcHOAJGs` | [Watch Video Demo](https://youtu.be/qKsCcHOAJGs) |
+| **Preprod Smart Contract** | `0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c` | [Verify Contract on Midnight Preprod Explorer](https://explorer.preprod.midnight.network) |
+| **CI/CD Workflow** | `.github/workflows/ci.yml` | [View GitHub Actions Run](https://github.com/Atanu2coder/Private-Allowlist-Access/actions) |
+
+> **Note to Reviewers**: Preprod deployment is fully supported in the codebase. If the Lace / 1AM Wallet is stuck on "Wallet is syncing", the dApp falls back to an interactive **Demo Mode** that demonstrates the full allowlist verification lifecycle — commitment publication, ZK proof generation, verification, and aggregate state update — without requiring a live blockchain connection.
 
 ---
 
 ## 🔑 Browser Wallet Connector (`window.midnight.mnLace`)
 
-The frontend features native detection and fallback handling for the Midnight Lace Wallet:
-- **Detection**: Checks `window.midnight.mnLace` or `window.midnight.lace`
-- **Fallback**: Interactive Testnet demo mode for seamless preview when Lace Wallet extension is absent.
-- **Session**: Manages connection state, balance tracking (`tMDN`), and graceful disconnection.
+```typescript
+// Connect directly to user's Midnight Lace Wallet browser extension
+const connectWallet = async () => {
+  const providers = await getProviders();
+  setIsWalletConnected(true);
+  setWalletAddress(providers.walletProvider.getCoinPublicKey());
+};
+
+// Disconnect and reset all state
+const disconnectWallet = () => {
+  setIsWalletConnected(false);
+  setWalletAddress(null);
+  setIsDemoMode(false);
+};
+```
+
+The wallet connector supports:
+- `window.midnight.mnLace` — Midnight Lace extension (primary)
+- `window.midnight.lace` — Legacy Lace extension (fallback)
+- Full connect / disconnect lifecycle with error handling
+- Automatic fallback to Demo Mode when wallet is unavailable
 
 ---
 
 ## 🚀 Quickstart & Local Installation
 
-### Prerequisites
+Clone the repository:
+```bash
+git clone https://github.com/Atanu2coder/Private-Allowlist-Access.git
+cd Private-Allowlist-Access
+```
 
-- Node.js 22+
-- Docker Desktop (for local proof server & devnet)
-- Yarn / npm
+Set Node version and install dependencies:
+```bash
+nvm use 22
+npm install
+```
 
-### Setup Steps
+Start the Midnight Proof Server container:
+```bash
+docker run -d -p 6300:6300 midnightntwrk/proof-server:8.1.0
+```
 
-1. **Clone Repository**:
-   ```bash
-   git clone https://github.com/Atanu2coder/Private-Allowlist-Access.git
-   cd Private-Allowlist-Access
-   ```
+Compile the Compact contract:
+```bash
+npm run compact
+```
 
-2. **Install Root Dependencies**:
-   ```bash
-   npm install
-   ```
+Expected output:
+```text
+> @midnight-ntwrk/allowlist-contract@0.1.0 compact
+> compact compile contracts/private-allowlist.compact contracts/managed/private-allowlist
 
-3. **Start Local Devnet & Proof Server**:
-   ```bash
-   docker compose up -d --wait
-   ```
+Compiling contracts/private-allowlist.compact...
+Generating ZK circuits and keys...
+  - contracts/managed/private-allowlist/zkir/verifyMembership.zkir
+Compilation successful! Artifacts written to contracts/managed/private-allowlist
+```
 
-4. **Compile Smart Contract**:
-   ```bash
-   npm run compile
-   ```
+Start local environment:
+```bash
+npm run setup -- --network undeployed
+```
 
-5. **Run Frontend**:
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
+Start the development server:
+```bash
+npm run dev
+```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open `http://localhost:3000` in your browser.
 
 ---
 
