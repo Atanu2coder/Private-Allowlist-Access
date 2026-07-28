@@ -184,6 +184,32 @@ This dApp eliminates the trade-off entirely. Using **Zero-Knowledge proofs on th
 
 ---
 
+## 📁 Project Structure
+
+```text
+Private-Allowlist-Access/
+├── contracts/                        # Compact ZK smart contract
+│   ├── private-allowlist.compact
+│   ├── index.ts                      # Contract exports & type interfaces
+│   └── managed/                      # Compiled ZK circuits & bindings
+├── frontend/                         # React + Vite frontend
+│   ├── src/
+│   │   ├── App.tsx                   # Main application
+│   │   ├── components/lightswind/    # Micro-interaction & animation UI components
+│   │   └── index.css                 # TailwindCSS v4 design tokens
+│   ├── package.json                  # Frontend dependencies
+│   └── vite.config.ts                # Vite build configuration
+├── scripts/                          # Devnet helper scripts
+├── .github/
+│   └── workflows/
+│       └── ci.yml                    # GitHub Actions CI/CD
+├── compose.yml                       # Docker Compose setup for local proof server
+├── vercel.json                       # Vercel deployment configuration
+└── package.json
+```
+
+---
+
 ## 📸 Platform Screenshots
 
 ### Private Allowlist Portal
@@ -207,32 +233,6 @@ Deploying contracts/private-allowlist.compact circuit...
 
 [SUCCESS] Contract deployed successfully!
 Contract Address: 0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c
-```
-
----
-
-## 📁 Project Structure
-
-```text
-Private-Allowlist-Access/
-├── contracts/                        # Compact ZK smart contract
-│   ├── private-allowlist.compact
-│   ├── index.ts                      # Contract exports & type interfaces
-│   └── managed/                      # Compiled ZK circuits & bindings
-├── frontend/                         # React + Vite frontend
-│   ├── src/
-│   │   ├── App.tsx                   # Main application
-│   │   ├── components/lightswind/    # Micro-interaction & animation UI components
-│   │   └── index.css                 # TailwindCSS v4 design tokens
-│   ├── package.json                  # Frontend dependencies
-│   └── vite.config.ts                # Vite build configuration
-├── scripts/                          # Devnet helper scripts
-├── .github/
-│   └── workflows/
-│       └── ci.yml                    # GitHub Actions CI/CD
-├── compose.yml                       # Docker Compose setup for local proof server
-├── vercel.json                       # Vercel deployment configuration
-└── package.json
 ```
 
 ---
