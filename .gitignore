@@ -1,0 +1,17 @@
+/node_modules
+/contracts/managed
+/contracts/hello-world.compact
+/logs
+deployment.json
+/midnight-level-db
+/.midnight-expert
+.env
+.env.preview
+.env.preprod
+.midnight-state.json
+.midnight-wallet-state
+
+# Frontend
+/frontend/node_modules
+/frontend/dist
+/frontend/.env
