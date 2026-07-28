@@ -211,11 +211,16 @@ Private-Allowlist-Access/
 ---
 
 ## 📸 Platform Screenshots
+<img width="1917" height="971" alt="Screenshot 2026-07-28 184745" src="https://github.com/user-attachments/assets/e46d182f-2292-4389-9d1c-80c17318f29a" />
+
 
 ### Private Allowlist Portal
 The hero landing page with wallet connect, commitment publication, or ZK verification panel.
 
 ### ZK Proof Generation & Activity Log
+<img width="1917" height="972" alt="Screenshot 2026-07-28 184804" src="https://github.com/user-attachments/assets/4d09aecb-2fc2-4ce9-8b4d-462eed39a567" />
+
+
 Real-time ZK proof activity console, wallet status tracking, and aggregate verified count updates.
 
 ### Multi-Page Dashboard & Explorer State
