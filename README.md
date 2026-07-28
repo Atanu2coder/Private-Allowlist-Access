@@ -3,8 +3,17 @@
 [![Midnight Network](https://img.shields.io/badge/Midnight-Network-purple.svg)](https://midnight.network)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/Atanu2coder/Private-Allowlist-Access)
+[![Deployment](https://img.shields.io/badge/Vercel-Live_Demo-000000.svg?logo=vercel)](https://private-allowlist-access-three.vercel.app/)
 
 A privacy-preserving allowlist-gated access dApp on the Midnight Network.
+
+## 🌐 Live Web Application
+
+Private Allowlist Access is a zero-knowledge dApp that enables confidential event and content gating without revealing user identities.
+Members generate zero-knowledge proofs locally in their browser to verify allowlist eligibility against on-chain ledger commitments.
+The application preserves complete user anonymity while updating verifiable aggregate check-in statistics on the Midnight Network.
+
+👉 **Live Demo**: [https://private-allowlist-access-three.vercel.app/](https://private-allowlist-access-three.vercel.app/)
 
 ## Product Proposal
 
