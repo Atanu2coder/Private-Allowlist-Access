@@ -4,6 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/Atanu2coder/Private-Allowlist-Access)
 [![Deployment](https://img.shields.io/badge/Vercel-Live_Demo-000000.svg?logo=vercel)](https://private-allowlist-access-three.vercel.app/)
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Video_Demo-red.svg?logo=youtube)](https://youtu.be/qKsCcHOAJGs)
 
 A privacy-preserving allowlist-gated access dApp on the Midnight Network.
 
@@ -14,6 +15,12 @@ Members generate zero-knowledge proofs locally in their browser to verify allowl
 The application preserves complete user anonymity while updating verifiable aggregate check-in statistics on the Midnight Network.
 
 👉 **Live Demo**: [https://private-allowlist-access-three.vercel.app/](https://private-allowlist-access-three.vercel.app/)
+
+## 🎬 Video Walkthrough & Demo
+
+[![Private Allowlist Access Video Demo](https://img.youtube.com/vi/qKsCcHOAJGs/maxresdefault.jpg)](https://youtu.be/qKsCcHOAJGs)
+
+📺 **Watch full video demo on YouTube**: [https://youtu.be/qKsCcHOAJGs](https://youtu.be/qKsCcHOAJGs)
 
 ## Product Proposal
 
