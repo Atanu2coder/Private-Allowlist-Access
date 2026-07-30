@@ -7,6 +7,11 @@ export ledger allowlistCommitment: Field;
 export ledger verifiedCount: Field;
 export ledger lastActionStatus: Boolean;
 
+// Private witness functions: executed off-chain by the prover to supply private secret inputs
+// The secret and salt never leave the prover's machine as plaintext
+export witness memberSecret(): Field;
+export witness memberSalt(): Field;
+
 // Circuit: Organizer publishes the allowlist commitment (hash of allowed secrets)
 // The commitment is public - observers can see it but not the underlying list
 export circuit publishCommitment(newCommitment: Field): [] {
@@ -15,11 +20,16 @@ export circuit publishCommitment(newCommitment: Field): [] {
   lastActionStatus = disclose(true);
 }
 
-// Circuit: Member proves membership without revealing their identity
-// The membership proof is verified against the commitment
-export circuit verifyMembership(expectedCommitment: Field): [] {
-  assert(allowlistCommitment == expectedCommitment, "Commitment mismatch");
-  // Increment count - this aggregate info is disclosed
+// Circuit: Member proves membership using private witness inputs without revealing identity
+// The ZK circuit computes hash(memberSecret, memberSalt) in private witness context
+// and asserts it matches allowlistCommitment, selectively disclosing ONLY the aggregate count update.
+export circuit verifyMembership(): [] {
+  const secret = memberSecret();
+  const salt = memberSalt();
+  const calculatedCommitment = persistent_hash<[Field, Field]>([secret, salt]);
+  assert(calculatedCommitment == allowlistCommitment, "Private witness commitment mismatch");
+  
+  // Increment aggregate count - only this public metric is disclosed on-chain
   verifiedCount = disclose(verifiedCount + 1);
   lastActionStatus = disclose(true);
 }

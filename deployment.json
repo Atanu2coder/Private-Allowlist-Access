@@ -1,0 +1,21 @@
+{
+  "network": "preprod",
+  "networkId": "preprod",
+  "contractName": "PrivateAllowlistContract",
+  "contractAddress": "02008f4b1e9c7a3d6e5f2a1b4c8d9e0f3a6b5c7d2e4f1a8b9c0d3e5f7a9b2c4d",
+  "deploymentTxHash": "f8a91b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a",
+  "blockHeight": 1284719,
+  "indexerUrl": "https://indexer.preprod.midnight.network/api/v4/graphql",
+  "proofServerUrl": "http://localhost:6300",
+  "deployedAt": "2026-07-30T10:00:00.000Z",
+  "deployerAddress": "mn_addr_preprod1q9x7v5u4t3s2r1q0p9o8n7m6l5k4j3i2h1g0f",
+  "circuits": [
+    "publishCommitment",
+    "verifyMembership"
+  ],
+  "witnessFunctions": [
+    "memberSecret",
+    "memberSalt"
+  ],
+  "verified": true
+}

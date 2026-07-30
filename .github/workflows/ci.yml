@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  compile-contract:
-    name: Verify Compact Smart Contract
+  verify-and-test:
+    name: Build, Verify Compact Contract & Run Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -25,12 +25,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: "npm"
 
-      - name: Verify & Compile Compact Contract Source
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Verify Compact Smart Contract Source
         run: |
           test -f contracts/private-allowlist.compact || (echo "Compact contract missing!" && exit 1)
-          mkdir -p contracts/managed
-          echo "Compact contract source and ZK circuit structure verified successfully."
+          npm run compile
+
+      - name: Run Unit & Integration Test Suite
+        run: npx vitest run src/test/unit.test.ts
 
   build-frontend:
     name: Build & Type-Check Frontend Application

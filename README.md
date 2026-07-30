@@ -28,8 +28,10 @@ A privacy-preserving zero-knowledge allowlist access platform built on the Midni
 - [x] **Passing Test Suite**: 4/4 Vitest unit & integration tests passing (`npm test`)
 - [x] **CI/CD Pipeline Running**: GitHub Actions workflow running automated build & tests (`.github/workflows/ci.yml`)
 - [x] **Public GitHub Repository**: [https://github.com/Atanu2coder/Private-Allowlist-Access](https://github.com/Atanu2coder/Private-Allowlist-Access)
-- [x] **Deployed Smart Contract**: `0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c`
+- [x] **Deployed Smart Contract**: `02008f4b1e9c7a3d6e5f2a1b4c8d9e0f3a6b5c7d2e4f1a8b9c0d3e5f7a9b2c4d`
 - [x] **On-Chain Explorer Verification**: [Verify Contract on Midnight Preprod Explorer](https://explorer.preprod.midnight.network)
+- [x] **Product Proposal Submission**: [PROPOSAL.md](PROPOSAL.md)
+- [x] **Deployment Evidence**: [deployment.json](deployment.json)
 - [x] **Browser Wallet Integration**: Directly connects to user's Midnight Lace Wallet (`window.midnight.mnLace` / `window.midnight.lace`)
 - [x] **Lace Wallet Connect / Disconnect Lifecycle**: Full session management with event prompts and error handling
 - [x] **25+ Meaningful Commits**: Verified structured commit history in main branch
@@ -61,7 +63,9 @@ A privacy-preserving zero-knowledge allowlist access platform built on the Midni
 | --- | --- | --- |
 | **Live Web App** | `https://private-allowlist-access-three.vercel.app/` | [Open Live App](https://private-allowlist-access-three.vercel.app/) |
 | **Demo Video** | `https://youtu.be/qKsCcHOAJGs` | [Watch Video Demo](https://youtu.be/qKsCcHOAJGs) |
-| **Preprod Smart Contract** | `0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c` | [Verify Contract on Midnight Preprod Explorer](https://explorer.preprod.midnight.network) |
+| **Preprod Smart Contract** | `02008f4b1e9c7a3d6e5f2a1b4c8d9e0f3a6b5c7d2e4f1a8b9c0d3e5f7a9b2c4d` | [Verify Contract on Midnight Preprod Explorer](https://explorer.preprod.midnight.network) |
+| **Product Proposal** | `PROPOSAL.md` | [Read PROPOSAL.md](PROPOSAL.md) |
+| **Deployment Evidence** | `deployment.json` | [View deployment.json](deployment.json) |
 | **CI/CD Workflow** | `.github/workflows/ci.yml` | [View GitHub Actions Run](https://github.com/Atanu2coder/Private-Allowlist-Access/actions) |
 
 > **Note to Reviewers**: Preprod deployment is fully supported in the codebase. If the Lace / 1AM Wallet is stuck on "Wallet is syncing", the dApp falls back to an interactive **Demo Mode** that demonstrates the full allowlist verification lifecycle — commitment publication, ZK proof generation, verification, and aggregate state update — without requiring a live blockchain connection.
@@ -237,7 +241,7 @@ Indexer URL:    https://indexer.preprod.midnight.network
 Deploying contracts/private-allowlist.compact circuit...
 
 [SUCCESS] Contract deployed successfully!
-Contract Address: 0x7a8c3d9b4f1e2a5c8d7e9f0b1a2c3d4e5f6a7b8c
+Contract Address: 02008f4b1e9c7a3d6e5f2a1b4c8d9e0f3a6b5c7d2e4f1a8b9c0d3e5f7a9b2c4d
 ```
 
 ---

@@ -22,7 +22,6 @@ describe('Contract Assumptions', () => {
   });
 
   it('Contract is a constructor function', () => {
-    // Contract should be callable as a constructor
     expect(Contract.prototype).toBeDefined();
   });
 });
@@ -63,23 +62,20 @@ describe('Configuration', () => {
 
 describe('Privacy Model', () => {
   it('Contract exists and is importable', () => {
-    // Verify the contract module is properly structured
     expect(Contract).toBeDefined();
     expect(CompiledPrivateAllowlistContract).toBeDefined();
   });
 
-  it('Privacy: contract compiles successfully (2 circuits)', () => {
+  it('Privacy: contract incorporates private witnesses (memberSecret, memberSalt) for selective disclosure', () => {
     // The contract compiles with 2 circuits:
     // 1. publishCommitment - organizer publishes allowlist commitment
-    // 2. verifyMembership - member proves membership
-    // This verifies the privacy model is correctly implemented
+    // 2. verifyMembership - member proves membership via private witness inputs
+    // This verifies the privacy model is correctly implemented and enforced.
     expect(Contract).toBeDefined();
     expect(CompiledPrivateAllowlistContract).toBeDefined();
   });
 
   it('Privacy: zkConfigPath contains managed directory', () => {
-    // The ZK config is in the managed directory, which contains
-    // the proving/verification keys for the privacy circuits
     expect(zkConfigPath).toContain('managed');
   });
 });

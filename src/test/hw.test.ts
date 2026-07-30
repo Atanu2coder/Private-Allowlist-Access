@@ -163,7 +163,6 @@ describe(`Private Allowlist Contract (${network})`, () => {
   });
 
   it('Publishes allowlist commitment', async () => {
-    // In a real implementation, this would be a hash of the allowlist
     const commitment = 12345n;
 
     await (submitCallTx<Contract, 'publishCommitment'>)(providers, {
@@ -180,7 +179,7 @@ describe(`Private Allowlist Contract (${network})`, () => {
     expect(state.lastActionStatus).toEqual(true);
   });
 
-  it('Verifies membership', async () => {
+  it('Verifies membership using private witness', async () => {
     const commitment = 12345n;
 
     await (submitCallTx<Contract, 'verifyMembership'>)(providers, {
@@ -188,7 +187,7 @@ describe(`Private Allowlist Contract (${network})`, () => {
       contractAddress,
       privateStateId: PRIVATE_STATE_ID,
       circuitId: 'verifyMembership',
-      args: [commitment],
+      args: [],
     });
 
     const state = await queryLedger(providers);
